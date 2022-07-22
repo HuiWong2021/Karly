@@ -18,17 +18,17 @@ touch ~/Payment1/scripts/start.sh
 touch ~/Payment1/configuration/instance.properties
 
 ##Give everyone permission to read the instance.properties file, but assign write and execute permissons only to yourself
-sudo chmod u=rwx,g=r--,o=r-- instance.properties
+sudo chmod 744 instance.properties
 
 ##Set permissions on the file start.sh so that everyone can execute and so that the group and owner can read and write
-sudo chmod u=rwx,g=--x,o=--x strat.sh
+sudo chmod 771 strat.sh
 
 ##Direct the output of man cat into a file in your home directory named cat.output
 
 man cat > cat.output
 
 ##Change the permission of that file so everyone can read it but only the group can write and execute
-sudo chmod u=r--,g=rwx,o=r-- strat.sh
+sudo chmod 474 strat.sh
 
 ##Go back to your home directory
 cd ~
