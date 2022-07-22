@@ -10,35 +10,35 @@ STOCK=AAPL_US
 ##Create a new variable named PRICE with value 290.84
 PRICE=290.84
 
-Print out to the screen a sentence ‘The current price of is ’ where you call the variables and get their values
+##Print out to the screen a sentence ‘The current price of is ’ where you call the variables and get their values
 echo "The current price of is $PRICE"
 
-Create a variable named WHOAMI and assign it your current username. Do this in one command.
+##Create a variable named WHOAMI and assign it your current username. Do this in one command.
 WHAOMI=`whoami`
 
-Using just $ and () assign a variable named SERVERTYPE by using the uname command
+##Using just $ and () assign a variable named SERVERTYPE by using the uname command
 SERVERTYPE=$(uname)
 
-Write a command to show to the screen the value of running the command assigned to SERVERTYPE
+##Write a command to show to the screen the value of running the command assigned to SERVERTYPE
 echo `SERVERTYPE`
 
-Assign a variable named CMD the command uname -i (not the value of running the command but the command itself)
+##Assign a variable named CMD the command uname -i (not the value of running the command but the command itself)
 CMD="uname -i"
 
-Using echo and the variable CMD, show how you echo the value of CMD (not execute the command)
+##Using echo and the variable CMD, show how you echo the value of CMD (not execute the command)
 echo $CMD
 
-Using echo and the variable CMD, print what the CMD returns when run to the screen
+##Using echo and the variable CMD, print what the CMD returns when run to the screen
 echo `$CMD`
 
-Change directory to your home directory
+##Change directory to your home directory
 cd ~
 
-Create a directory named scripts
+##Create a directory named scripts
 mkdir scripts
 
-Print out your $PATH Value
+##Print out your $PATH Value
 echo $PATH
 
-Append your newly created script directory to your path variable
+##Append your newly created script directory to your path variable
 PATH=`~/scripts`
