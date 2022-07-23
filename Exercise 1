@@ -35,7 +35,7 @@ man ls
 cd /var
 
 ##Show the contents of this directory with details reverse sorted by size (you may have to use man to help)
-man ls
+ls --help
 ls -Sr
 
 ##Find out the hardware version you are running
