@@ -17,7 +17,7 @@ The script will run in the background and create a log file named fixlog that we
 cat fixlog20220722155749.log
 
 ##Use the cat command to display the contents of the script you ran to the screen but with line numbers.
-cat -n 30 fixlog20220722155749.log
+cat -n fixlog20220722155749.log
 
 ##Read the contents of the log file created using cat but direct it to a new file in your home directory named newlog.log
 cat fixlog20220722155749.log > newlog.log
@@ -32,7 +32,7 @@ mv newlog.log logs/.
 cat fixlog20220722155749.log >> newlog.log
 
 ##Create a soft link named Daily to your newlog.log file in the logs directory.
-ln -s ./logs/newlog.log Daily
+ln -s ~/logs/newlog.log Daily
 
 ##Return to your home directory.
 cd ~
@@ -65,7 +65,7 @@ wc -l newOrders.log
 grep -c buy buyMessages.log
 
 ##Create a new version of the logfile named noNewOrders.log that has everything except new order messages in it and put it in the logs directory.
-grep -v "39-0" fixlog20220722155749.log > noNewOrders.log
+grep -v "39=0" fixlog20220722155749.log > noNewOrders.log
 
 ##Count how many words are in the noNewOrders.log.
 wc noNewOrders.log
