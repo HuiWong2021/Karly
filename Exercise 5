@@ -11,7 +11,7 @@ Repeat the previous exercise. This time, select every process except things runn
 ps -ef | grep -v "root"
 
 ##Show the process info for our current session without using a grep command.
-ps –f $$ 
+ps –f  
 
 ##Show the process tree for the current session.
 ps –ef f
