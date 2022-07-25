@@ -44,7 +44,7 @@ touch newdisk
 gunzip disk.tar.gz
 
 ##Add the newdisk file to the tar file.
-tar -r disk.tar newdisk
+tar -rvf disk.tar newdisk
 
 ##Compress the tar file again to make a g-zipped tarball again.
 tar –cz disk.tar.gz /disk
