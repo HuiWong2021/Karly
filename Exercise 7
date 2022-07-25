@@ -1,0 +1,39 @@
+##Open a new file named avengers in your home directory in your editor and paste in the following text:
+Six stones, three teams, one shot. Five years ago, we lost. All of us. We lost friends. We lost family. We lost a part of ourselves. Today, we have a chance to take it all back. You know your teams. You know your missions. Get the stones. Get them back. One round trip each. No mistakes. No do-overs. Most of us are going somewhere we know. that doesn't mean we should know what to expect. Be careful. Look out for each other. This is the fight of our lives, and we're gonna win. Whatever it takes. Good luck.
+
+##Exit and save the file.
+##Run a word count on the file.
+g then Ctrl-g
+
+##Edit the file to add a blank line and type in "word count" followed by the value you just got.
+o then word count 89
+
+##Now use search and replace within the editor to replace every instance of the word the with THE. Ensure that you only catch the word the and not words that contain the letters the (like them).
+:
+
+##Copy the first line of the file and paste it after your word count entry at the bottom of the file.
+
+##Delete the first line of the file.
+Undo that deletion.
+Insert at the top of the file the text "Captain America – Endgame" followed by an empty line.
+Save the changes and exit the editor.
+Find out the number of lines in the file now.
+Write the number of lines into the file one line above the word count with the text "line count" plus the value.
+Delete "Good luck" wherever it occurs in the file.
+Save and exit the file
+Rename the file avengers.yourname and put it in the location specified by the instructor.
+
+***Part 2***
+##Run the fixGenerator.sh script again from your home directory using the following commands:
+cd ~
+./fixGenerator.sh &
+You should have a fix log output now from running the script earlier.
+
+Run a search for all new order singles in the fix log output and put the output of that search into a file named newOrders.log in your home directory.
+Open newOrders.log in your editor.
+Duplicate the first line in the file.
+Go to the fifth line in the file and duplicate it also.
+Find and replace every instance of MTHREE with M3.
+Find and replace every ; (semicolon) with a , (comma) and ensure there is no space after the commas.
+Save and exit the file.
+Rename your file to newOrders.<yourname>.log and save it in the directory specified by the instructor.
