@@ -2,7 +2,7 @@
 ps -ef
 
 ##Confirm the username you are running as.
-top –u username
+echo $USER
 
 ##Run a command to see all the processes running on the server and use grep to select only the processes your user is running.
 ps -ef | grep "root"
