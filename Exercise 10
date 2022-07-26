@@ -1,5 +1,4 @@
 Use Linux to complete the following exercises.
-#!/bin/bash#
 
 ##Create a variable named TEXT with the value "The number is "
 TEXT="The number is "
@@ -52,6 +51,8 @@ history > karly.220726.module1112
 vi diskSpace.sh
 #!/bin/sh
 df -h
+Esc
+:wq
 chmod 777 diskSpace.sh
 ./diskSpace.sh
 
