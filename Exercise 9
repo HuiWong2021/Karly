@@ -55,4 +55,4 @@ vi logs/cancel2.log then :%s/55=GOOG/55=AGOOG/
 diff logs/cancels.log logs/cancels2.log
 
 Now run the history command and put it into an output file named name.YYMMDD.module10 in the directory specified by your instructor.
-karly.220726.module10
+history > karly.220726.module10
