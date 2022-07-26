@@ -42,13 +42,17 @@ TODAY=`date +%d.%m.%Y`
 GENDATE=$TODAY
 
 ##Create a file named output.log with today’s date as an extension using the variable you just created.
-touch output.log.$TODAY
+touch output.log.$GENDATE
 
 ##Run the history command and put the output into a file named name.YYMMDD.module1112 in the directory specified by your instructor.
 history > karly.220726.module1112
 
 **************************
-##
+## Create a script to summarize available disk space and present in a logical and readable fashion.
+
+
+##Write a shell script which uses function to print hello world.
+
 
 
 
