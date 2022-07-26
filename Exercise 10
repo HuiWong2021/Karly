@@ -49,17 +49,22 @@ history > karly.220726.module1112
 
 **************************
 ## Create a script to summarize available disk space and present in a logical and readable fashion.
+vi diskSpace.sh
+#!/bin/sh
+df -h
+chmod 777 diskSpace.sh
+./diskSpace.sh
 
 
 ##Write a shell script which uses function to print hello world.
-vi helloworld.sh
+vi helloWorld.sh
 i
 #!/bin/sh
 echo hello world
 Esc
 :wq
-chmod 777 helloword.sh
-./helloworld.sh
+chmod 777 helloWord.sh
+./helloWorld.sh
 
 
 
