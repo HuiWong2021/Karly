@@ -1,4 +1,5 @@
 Use Linux to complete the following exercises.
+#!/bin/bash#
 
 ##Create a variable named TEXT with the value "The number is "
 TEXT="The number is "
@@ -32,16 +33,16 @@ echo "i is equal to 2"
 else
 echo "i is neither 1 or 2"
 fi
-Change the value of i to be something not 1 or 2 and check that the statement works again.
+##Change the value of i to be something not 1 or 2 and check that the statement works again.
 
-Create a variable of today's date named TODAY in the format of DD.MM.YYYY.
+##Create a variable of today's date named TODAY in the format of DD.MM.YYYY.
 TODAY=`date +%d.%m.%Y`
 
-Create another variable named GENDATE that has the command to generate and store the same date.
+##Create another variable named GENDATE that has the command to generate and store the same date.
 GENDATE=`date`
 
-Create a file named output.log with today’s date as an extension using the variable you just created.
+##Create a file named output.log with today’s date as an extension using the variable you just created.
 touch output.log.$TODAY
 
-Run the history command and put the output into a file named name.YYMMDD.module1112 in the directory specified by your instructor.
+##Run the history command and put the output into a file named name.YYMMDD.module1112 in the directory specified by your instructor.
 history > karly.220726.module1112
