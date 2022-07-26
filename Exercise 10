@@ -52,6 +52,14 @@ history > karly.220726.module1112
 
 
 ##Write a shell script which uses function to print hello world.
+vi helloworld.sh
+i
+#!/bin/sh
+echo hello world
+Esc
+:wq
+chmod 777 helloword.sh
+./helloworld.sh
 
 
 
