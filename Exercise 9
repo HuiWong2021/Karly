@@ -26,19 +26,26 @@ touch logs/partialFills.log
 grep 39=1 logs/fixlog2.log >> logs/partialFills.log
 
 ##Use awk to create a new file out of the partial fill log that has the following tags only: Symbol (55); orderID (11); side(54); fill price (31); fill quantity (32); execution id (17). Name the file parsedPartialFills.log and make sure you print the columns in the order listed here.
-
+awk '/55 11 54 31 32 17/{print}' logs/partialFills.log > logs/parsedPartialFills.log
 
 ##Using an editor, remove the first part of every fix tag (so you are left with the value only) and turn the file into a comma separated list with no spaces. This is how you might have to get a file ready to send to a trader.
-
+vi logs/parsedPartialFills.log
+:%s/55=//g | %s/11=//g | %s/54=//g | %s/31=//g | %s/32=//g | %s/17=//g
+sed 's/;\/,/g/' logs/parsedPartialFills.log
 
 ##In the file, add a row of column headers separated by commas. The headers should be Symbol, OrderID, Side, Price, Qty, and ExecID.
+i then Symbol,OrderID,Side,Price,Qty,ExecID
 
 ##Save the file as .module10.csv in the location specified by your instructor.
+cat logs/parsedPartialFills.log > logs/parsedPartialFills.module10.csv
 
 ##Make a copy of the cancels file and name it cancels2.log.
+cp logs/cancels.log logs/cancels2.log
 
 ##Open the cancels2.log file in an editor. Find the first symbol (tag 55) in the first line and add the letter A to the beginning of the value. (If it was 55=GOOG, it will become 55=AGOOG.)
+vi logs/cancel2.log then :%s/55=GOOG/55=GOOGA/
 
 ##Run a difference between the original cancels file and the new file you just edited.
+diff logs/cancels.log logs/cancels2.log
 
 Now run the history command and put it into an output file named name.YYMMDD.module10 in the directory specified by your instructor.
