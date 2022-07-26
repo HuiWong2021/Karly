@@ -20,7 +20,7 @@ fg %1
 
 
 ##Run a command to sleep for 10 seconds in the background and then print out "hello world" to the screen.
-sleep 10 && echo "hello world"
+sleep 10 && echo "hello world" &
 
 ##Using the ; command in one line, sleep for 5 seconds and then show the man page of ls to the screen.
 sleep 5; man ls
