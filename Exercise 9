@@ -29,6 +29,9 @@ grep 39=1 logs/fixlog2.log >> logs/partialFills.log
 cat logs/partialFills.log
 awk '{print $7,$9,$13,$10,$15,$16}' logs/partialFills.log > logs/parsedPartialFills.log
 
+or
+awk '/55 11 54 31 32 17/{print}' partialFills.log > parsedPartialFills.log
+
 ##Using an editor, remove the first part of every fix tag (so you are left with the value only) and turn the file into a comma separated list with no spaces. This is how you might have to get a file ready to send to a trader.
 vi logs/parsedPartialFills.log
 :%s/55=//g | %s/11=//g | %s/54=//g | %s/31=//g | %s/32=//g | %s/17=//g
