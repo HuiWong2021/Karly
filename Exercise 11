@@ -116,7 +116,7 @@ chmod 755 LOTR.txt
 wc -w LOTR.txt
 
 ##Rename the LOTR.txt file to LordOfTheRings.txt.
-touch LOTR.txt LordOfTheRings.txt
+mv LOTR.txt LordOfTheRings.txt
 
 ##Create a compressed tarball named LOTR.tar.gz that includes all the files you have created in this set of exercises.
 tar -cvzf LOTR.tar.gz LOTRtxt LOTRMarvel.txt LordOfTheRings.txt
