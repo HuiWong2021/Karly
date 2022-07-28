@@ -3,41 +3,60 @@ In these exercises, we will practice writing some cron jobs, using the fixGenera
 ##Ensure the fixGenerator.sh script is installed in your home directory.
 
 ##Set up the script to run Monday-Friday at 6am.
-
+0 6 * * 1-5 ~/fixGenerator.sh
 
 ##Set up the script to run at 6pm every Friday.
+0 18 * * 5 ~/fixGenerator.sh
 
 ##Set up the script to run every half hour from 9-4 on Monday, Wednesday and Friday.
+0,30 9-16 * * 1,3,5 ~/fixGenerator.sh
 
 ##Set up the script to run every other hour every day.
+0 0-23 * * * ~/fixGenerator.sh
 
 ##Set up the script to run on May 4th at midday.
+0 12 4 5 * ~/fixGenerator.sh
 
 ##Set up the script to run on the 1st of every month at 6:25am.
+25 6 1 * * ~/fixGenerator.sh
 
 ##Set up the script to run every 20 minutes every Tuesday between 10am and 2pm.
+0,20,40 10-14 * * 5 ~/fixGenerator.sh
 
 ##Set up the script to run the 1st of every other month on the hour.
+0 * 1 * * ~/fixGenerator.sh
 
 ##Set up the script to run at 6am and 8am on Saturday and Sunday.
+0 6,8 * * 6,7 ~/fixGenerator.sh
 
 ##Copy the contents of your crontab into a file named crontab.yourname.module13 and place the file in the directory specified by your instructor.
+cp fixGenerator.sh > crontab.karly.module13
 
 Part 2: Review Exercises
 ##For the following exercises, create a file named module13.name.answers in the directory specified by your instructor. Put the commands you use in this file. 
+touch module13.name.answers
 
 Working with Files
-Create a file named seq1.txt and write a sentence of your choice in it.
+##Create a file named seq1.txt and write a sentence of your choice in it.
+touch seq1.txt
+echo "it's a beautiful day" >> seq1.txt
 
-Create a file named seq2.txt and write a sentence of your choice in it.
+##Create a file named seq2.txt and write a sentence of your choice in it.
+touch seq2.txt
+echo "how about a cup of coffee?" >> seq2.txt
 
-Create a file named seq3.txt and write a sentence of your choice in it.
+##Create a file named seq3.txt and write a sentence of your choice in it.
+touch seq3.txt 
+echo "nice meeting you today" >> seq3.txt
 
-Generate a list of these files and add the list to another file named list.txt.
+##Generate a list of these files and add the list to another file named list.txt.
+ls -l > list.txt
 
-Use a single command to copy the contents of all files with seq in the name into a file named total.txt.
+##Use a single command to copy the contents of all files with seq in the name into a file named total.txt.
+cat seq* > total.txt
 
-Write a single command that shows how many files you have in your current directory.
+##Write a single command that shows how many files you have in your current directory.
+ls | wc -l
 
 Working with Text
 For the following activities, start by putting the following text into a file named LOTR.txt. Use the new file to complete the exercises.
@@ -75,18 +94,26 @@ And some things that should not have been forgotten were lost. History became le
 It came to the creature Gollum, who took it deep into the tunnels of the Misty Mountains. And there it consumed him. The ring gave to Gollum unnatural long life. For five hundred years it poisoned his mind, and in the gloom of Gollum’s cave, it waited. Darkness crept back into the forests of the world. Rumor grew of a shadow in the East, whispers of a nameless fear, and the Ring of Power perceived its time had come. It abandoned Gollum, but then something happened that the Ring did not intend. It was picked up by the most unlikely creature imaginable: a hobbit, Bilbo Baggins, of the Shire.
 
 For the time will soon come when hobbits will shape the fortunes of all.
-Do a case-insensitive search of the file for hobbit and output the results to the screen.
+##Do a case-insensitive search of the file for hobbit and output the results to the screen.
+grep -i hobbit LOTR.txt
 
-Put the first eight lines and the last three lines into a new file named LOTRtxt.
+##Put the first eight lines and the last three lines into a new file named LOTRtxt.
+cat head -8 LOTR.txt | tail -3 LOTR.txt | > LOTRtxt.txt
 
 Run a command on the command line to replace all occurrences of Gollum with Thanos and output the results into a new file named LOTRMarvel.txt.
+sed -i '' 's/Gollum/THanos/g' LOTRtxt.txt > LOTRMarvel.txt
 
 On the command line, run a command to compare the LOTR.txt with LOTRMarvel.txt.
+diff LOTR.txt LOTRMarvel.txt
 
 Change the permission on LOTR.txt so that it is read and executable for others and group, and fully accessible for the current user.
+chmod 755 LOTR.txt
 
 Count the number of words in LOTR.txt.
+wc -w LOTR.txt
 
 Rename the LOTR.txt file to LordOfTheRings.txt.
+touch LOTR.txt LordOfTheRings.txt
 
 Create a compressed tarball named LOTR.tar.gz that includes all the files you have created in this set of exercises.
+tar -cvzf LOTR.tar.gz LOTRtxt LOTRMarvel.txt LordOfTheRings.txt
