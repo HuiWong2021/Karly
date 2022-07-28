@@ -38,6 +38,8 @@ touch module13.name.answers
 
 Working with Files
 ##Create a file named seq1.txt and write a sentence of your choice in it.
+mkdir seq
+cd seq
 touch seq1.txt
 echo "it's a beautiful day" >> seq1.txt
 
@@ -100,20 +102,20 @@ grep -i hobbit LOTR.txt
 ##Put the first eight lines and the last three lines into a new file named LOTRtxt.
 cat head -8 LOTR.txt | tail -3 LOTR.txt | > LOTRtxt.txt
 
-Run a command on the command line to replace all occurrences of Gollum with Thanos and output the results into a new file named LOTRMarvel.txt.
+##Run a command on the command line to replace all occurrences of Gollum with Thanos and output the results into a new file named LOTRMarvel.txt.
 sed -i '' 's/Gollum/THanos/g' LOTRtxt.txt > LOTRMarvel.txt
 
-On the command line, run a command to compare the LOTR.txt with LOTRMarvel.txt.
+##On the command line, run a command to compare the LOTR.txt with LOTRMarvel.txt.
 diff LOTR.txt LOTRMarvel.txt
 
-Change the permission on LOTR.txt so that it is read and executable for others and group, and fully accessible for the current user.
+##Change the permission on LOTR.txt so that it is read and executable for others and group, and fully accessible for the current user.
 chmod 755 LOTR.txt
 
-Count the number of words in LOTR.txt.
+##Count the number of words in LOTR.txt.
 wc -w LOTR.txt
 
-Rename the LOTR.txt file to LordOfTheRings.txt.
+##Rename the LOTR.txt file to LordOfTheRings.txt.
 touch LOTR.txt LordOfTheRings.txt
 
-Create a compressed tarball named LOTR.tar.gz that includes all the files you have created in this set of exercises.
+##Create a compressed tarball named LOTR.tar.gz that includes all the files you have created in this set of exercises.
 tar -cvzf LOTR.tar.gz LOTRtxt LOTRMarvel.txt LordOfTheRings.txt
