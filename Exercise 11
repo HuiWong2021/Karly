@@ -1,0 +1,92 @@
+Part 1: cron
+In these exercises, we will practice writing some cron jobs, using the fixGenerator script as the command to execute.
+##Ensure the fixGenerator.sh script is installed in your home directory.
+
+##Set up the script to run Monday-Friday at 6am.
+
+
+##Set up the script to run at 6pm every Friday.
+
+##Set up the script to run every half hour from 9-4 on Monday, Wednesday and Friday.
+
+##Set up the script to run every other hour every day.
+
+##Set up the script to run on May 4th at midday.
+
+##Set up the script to run on the 1st of every month at 6:25am.
+
+##Set up the script to run every 20 minutes every Tuesday between 10am and 2pm.
+
+##Set up the script to run the 1st of every other month on the hour.
+
+##Set up the script to run at 6am and 8am on Saturday and Sunday.
+
+##Copy the contents of your crontab into a file named crontab.yourname.module13 and place the file in the directory specified by your instructor.
+
+Part 2: Review Exercises
+##For the following exercises, create a file named module13.name.answers in the directory specified by your instructor. Put the commands you use in this file. 
+
+Working with Files
+Create a file named seq1.txt and write a sentence of your choice in it.
+
+Create a file named seq2.txt and write a sentence of your choice in it.
+
+Create a file named seq3.txt and write a sentence of your choice in it.
+
+Generate a list of these files and add the list to another file named list.txt.
+
+Use a single command to copy the contents of all files with seq in the name into a file named total.txt.
+
+Write a single command that shows how many files you have in your current directory.
+
+Working with Text
+For the following activities, start by putting the following text into a file named LOTR.txt. Use the new file to complete the exercises.
+
+Galadriel: (speaking partly in Elvish)
+
+(I amar prestar aen.)
+
+The world is changed.
+
+(Han matho ne nen.)
+
+I feel it in the water.
+
+(Han mathon ned cae.)
+
+I feel it in the earth.
+
+(A han noston ned gwilith.)
+
+I smell it in the air.
+
+Much that once was is lost, for none now live who remember it.
+
+It began with the forging of the Great Rings. Three were given to the Elves, immortal, wisest and fairest of all beings. Seven to the Dwarf-Lords, great miners and craftsmen of the mountain halls. And nine, nine rings were gifted to the race of Men, who above all else desire power. For within these rings was bound the strength and the will to govern each race. But they were all of them deceived, for another ring was made. Deep in the land of Mordor, in the Fires of Mount Doom, the Dark Lord Sauron forged a master ring, and into this ring he poured his cruelty, his malice and his will to dominate all life.
+
+One ring to rule them all.
+
+One by one, the free lands of Middle-Earth fell to the power of the Ring, but there were some who resisted. A last alliance of men and elves marched against the armies of Mordor, and on the very slopes of Mount Doom, they fought for the freedom of Middle-Earth. Victory was near, but the power of the ring could not be undone. It was in this moment, when all hope had faded, that Isildur, son of the king, took up his father’s sword.
+
+Sauron, enemy of the free peoples of Middle-Earth, was defeated. The Ring passed to Isildur, who had this one chance to destroy evil forever, but the hearts of men are easily corrupted. And the ring of power has a will of its own. It betrayed Isildur, to his death.
+
+And some things that should not have been forgotten were lost. History became legend. Legend became myth. And for two and a half thousand years, the ring passed out of all knowledge. Until, when chance came, it ensnared another bearer.
+
+It came to the creature Gollum, who took it deep into the tunnels of the Misty Mountains. And there it consumed him. The ring gave to Gollum unnatural long life. For five hundred years it poisoned his mind, and in the gloom of Gollum’s cave, it waited. Darkness crept back into the forests of the world. Rumor grew of a shadow in the East, whispers of a nameless fear, and the Ring of Power perceived its time had come. It abandoned Gollum, but then something happened that the Ring did not intend. It was picked up by the most unlikely creature imaginable: a hobbit, Bilbo Baggins, of the Shire.
+
+For the time will soon come when hobbits will shape the fortunes of all.
+Do a case-insensitive search of the file for hobbit and output the results to the screen.
+
+Put the first eight lines and the last three lines into a new file named LOTRtxt.
+
+Run a command on the command line to replace all occurrences of Gollum with Thanos and output the results into a new file named LOTRMarvel.txt.
+
+On the command line, run a command to compare the LOTR.txt with LOTRMarvel.txt.
+
+Change the permission on LOTR.txt so that it is read and executable for others and group, and fully accessible for the current user.
+
+Count the number of words in LOTR.txt.
+
+Rename the LOTR.txt file to LordOfTheRings.txt.
+
+Create a compressed tarball named LOTR.tar.gz that includes all the files you have created in this set of exercises.
