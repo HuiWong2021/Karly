@@ -100,7 +100,8 @@ For the time will soon come when hobbits will shape the fortunes of all.
 grep -i hobbit LOTR.txt
 
 ##Put the first eight lines and the last three lines into a new file named LOTRtxt.
-cat head -8 LOTR.txt | tail -3 LOTR.txt | > LOTRtxt.txt
+cat head -n 8 LOTR.txt > LOTRtxt.txt
+tail -n 3 LOTR.txt >> LOTRtxt.txt
 
 ##Run a command on the command line to replace all occurrences of Gollum with Thanos and output the results into a new file named LOTRMarvel.txt.
 sed -i '' 's/Gollum/THanos/g' LOTRtxt.txt > LOTRMarvel.txt
