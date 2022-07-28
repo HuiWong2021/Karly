@@ -12,7 +12,7 @@ In these exercises, we will practice writing some cron jobs, using the fixGenera
 */30 9-16 * * 1,3,5 ~/fixGenerator.sh
 
 ##Set up the script to run every other hour every day.
-0 * * * * ~/fixGenerator.sh
+0 */2 * * * ~/fixGenerator.sh
 
 ##Set up the script to run on May 4th at midday.
 0 12 4 5 * ~/fixGenerator.sh
@@ -21,7 +21,7 @@ In these exercises, we will practice writing some cron jobs, using the fixGenera
 25 6 1 * * ~/fixGenerator.sh
 
 ##Set up the script to run every 20 minutes every Tuesday between 10am and 2pm.
-*/20 10-14 * * 5 ~/fixGenerator.sh
+*/20 10-14 * * 2 ~/fixGenerator.sh
 
 ##Set up the script to run the 1st of every other month on the hour.
 0 * 1 */2 * ~/fixGenerator.sh
