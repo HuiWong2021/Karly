@@ -34,4 +34,8 @@ e.g. durability property ensures that the changes made to Y will not be reversed
 A transaction log (aka journal/audit trail) is a history of executed actions. 
 it records all transactions and the database modifications made by each transaction.
 Even if there are crashes or hardware fails, the log file has a durable list of each change made to the database.
-If there is a system failure, we will need that log to bring your database back to a consistent state.
+If there is a system failure, we will need that log to bring our database back to a consistent state.
+
+Backup strategies:
+might perform a nightly data backup and a log backup every 10 minutes
+better: could use multiple database servers and execute transactions on each. If one server fails, another can takes its place (aka database cluster).
