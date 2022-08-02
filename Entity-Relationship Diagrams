@@ -1,0 +1,22 @@
+ER diagram = type of flowchart that illustrates how “entities” such as people, objects or concepts relate to each other within a system
+
+well-designed ERD includes:
+  The tables required by the database, including the name of each table;
+  A list of fields contained in each table;
+  Metadata about each field, including the name of the field, its data type, and whether or not it is nullable;
+  Identification of all primary (PK) and foreign key (FK) fields;
+  How each table is related to each other.
+
+ERD never includes data – just a description of the kind of data that the table will hold. 
+Often useful to have access to sample data sets, to help you identify what fields the ERD should include and what the appropriate data type is for each field.
+
+relationships: one-to-one, one-to-many, many-to-many
+> indigates many
+| indicates one
+o indicates optional (zero)
+
+Any many-to-many relationships will be defined as two one-to-many relationships between three tables, using a bridge table to connect the original tables.
+A many-to-many relationship, then, must include three separate tables: the two original tables and a bridge table. 
+e.g. student and class are many-to-many relationship. can be broken down into 3 tables: student, class, and class enrollment.
+
+
