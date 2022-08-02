@@ -1,0 +1,37 @@
+ACID - Atomic, consistency, isolation, and duration
+ACID is important for making sure data doesn’t become corrupt as a result of any failures.
+
+Atomic:
+Either all of the transaction succeeds or none of it does. (you don’t get part of it succeeding and part of it not)
+If one part of the transaction fails, the whole transaction fails
+It’s either “all or nothing”
+e.g. transfer $100 from X account to Y account. $100 has been deducted from X, but the transaction fails before Y receives $100. There are no money added to Y. 
+  This results in an inconsistent database state. Hence, the transaction must be executed in its entirety in order to ensure the accuracy of the database state. 
+
+Consistency:
+All data will be consistent. 
+All data will be valid according to all defined rules, 
+  including any constraints, 
+  cascades (A connected series of devices or images. It often implies that the second and subsequent device takes over after the previous one is used up), 
+  and triggers that have been applied on the database.
+Integrity constraints must be maintained so that the database is consistent before and after the transaction. 
+It refers to the accuracy of a database
+e.g.transfers $100 from one X account to Y account, the consistency property ensures that the total value of funds in X and Y is the same at the start and end the transaction.
+
+Isolation:
+all transactions will occur in isolation. 
+No transaction will be affected by any other transaction. 
+A transaction cannot read data from any other transaction that has not yet completed.
+e.g. Another transaction sees the transferred funds in either X or Y, but not in both, nor in neither.
+
+Durability:
+once a transaction is committed, it will remain in the system (even if there’s a system crash immediately following the transaction)
+Any changes from the transaction must be stored permanently. 
+If the system tells the user the transaction has succeeded, the transaction must have actually succeeded.
+e.g. durability property ensures that the changes made to Y will not be reversed
+
+
+A transaction log (aka journal/audit trail) is a history of executed actions. 
+it records all transactions and the database modifications made by each transaction.
+Even if there are crashes or hardware fails, the log file has a durable list of each change made to the database.
+If there is a system failure, we will need that log to bring your database back to a consistent state.
