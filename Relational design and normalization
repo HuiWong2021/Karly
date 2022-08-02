@@ -1,0 +1,79 @@
+Normalization is the process of breaking down these relationships into simpler structures.
+  the process of efficiently organizing data in a database so that redundant data is eliminated
+  This process can ensure that all of a company’s data looks and reads similarly across all records. 
+  By implementing data normalization, an organization standardizes data fields such as customer names, addresses, and phone numbers. 
+A properly-normalized design improves performance and reduces the complexity of relationships by minimizing data duplication (redundancy).
+
+Data redundancy occurs when the same piece of data is stored in two or more separate places (cause data inconsistency and increase in cost)
+update anomaly is a data inconsistency that results from data redundancy and a partial update. 
+  e.g. each employee in a company has a department associated with them as well as the student group they participate in. 
+      If "IT" department is an error it must be updated at least 2 times or there will be inconsistent data in the database. 
+     If the user performing the update does not realize the data is stored redundantly, the update will not be done properly.
+
+deletion anomaly is the unintended loss of data due to deletion of other data
+insertion anomaly is the inability to add data to the database due to absence of other data
+
+Functional dependency is a dependency relationship
+e.g. column A depends on column B or columns A, B, and E depend on columns C and D
+In a well-designed table, all columns will depend on at least one column in the table. 
+If there are columns that are independent of the others, they are candidates to be moved to a separate table.
+
+Normalization process:
+The process of normalizing a database involves applying a sequence of rules called normal forms to the database. 
+heap = the table is unstructured and has no constraints that are required by any normal form (where we need to do normalization)
+
+normal forms:
+1NF: A relation/table is in 1NF if it contains an atomic value.
+  There is no top-to-bottom ordering to the rows. (data in a table can be accessed in any order)
+  There is no left-to-right ordering to the columns. (data in a table can be accessed in any order)
+  Every row can be uniquely identified.
+  Every row/column intersection (field) contains only one value.
+2NF: A relation/table will be in 2NF if it is in 1NF and all non-key attributes are fully functional dependent on the primary key.
+  all of the columns except the primary key need to be strictly related to each other. 
+  Should not repeat data across rows.
+3NF: A relation/table will be in 3NF if it is in 2NF and no non-primary-key column is transitively dependent on the primary key
+  no transitively dependent: no non-primary-key column is functionally dependent on any non-key set of fields.
+    dependent e.g. City depends on the primary key ContactID and the ZipCode depends on the primary key ContactID, but in the real world, a zip code is assigned a city. 
+                   So City relies on ZipCode which relies on ContactID.
+
+Denormalization:
+When we normalize tables, we break them into multiple smaller tables. 
+So when we want to retrieve data from multiple tables, we need to perform some kind of join operation on them. 
+In that case, we use the denormalization technique that eliminates the drawback of normalization. 
+(drawbacks of normalization: adds an additional table and more constraints. Constraints take time to process and add complexity to your data model)
+Denormalization = a technique used by database administrators to optimize the efficiency of their database infrastructure. 
+When optimizing for extreme performance, there are times that you are less concerned with data protection and choose to move back towards 1NF.
+Allows us to add redundant data into a normalized database to alleviate issues with database queries that merge data from several tables into a single table. 
+The denormalization concept is based on the definition of normalization that is defined as arranging a database into tables correctly for a particular purpose.
+Used to process massive amounts of data and having to do dozens of table joins and calculations over huge result sets can be very slow. 
+  The accepted solution to this problem is to periodically poll your database for changes and move the changed data into a denormalized structure, 
+  and do any known calculations (sales by day, month, quarter, year, etc.) in advance. 
+  Then when a user requests the reports, they can use this pre-optimized data to provide a quick response.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
