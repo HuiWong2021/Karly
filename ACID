@@ -16,7 +16,7 @@ All data will be valid according to all defined rules,
   and triggers that have been applied on the database.
 Integrity constraints must be maintained so that the database is consistent before and after the transaction. 
 It refers to the accuracy of a database
-e.g.transfers $100 from one X account to Y account, the consistency property ensures that the total value of funds in X and Y is the same at the start and end the transaction.
+e.g. the consistency property ensures that the total value of funds in X and Y is the same at the start and end the transaction.
 
 Isolation:
 all transactions will occur in isolation. 
