@@ -1,0 +1,179 @@
+use PersonalTrainer;
+
+-- Use an aggregate to count the number of Clients.
+-- 500 rows
+SELECT COUNT(ClientID) 'Number of Clients'
+FROM personaltrainer.client;
+--------------------
+
+-- Use an aggregate to count Client.BirthDate.
+-- The number is different than total Clients. Why?
+-- 463 rows
+SELECT COUNT(BirthDate)
+FROM personaltrainer.client;
+-- different becuase there are null values in the BirthDate column
+--------------------
+
+-- Group Clients by City and count them.
+-- Order by the number of Clients desc.
+-- 20 rows
+SELECT City, COUNT(ClientID) 'Number of Clients'
+FROM personaltrainer.client
+GROUP BY City
+ORDER BY COUNT(ClientID) DESC;
+--------------------
+
+-- Calculate a total per invoice using only the InvoiceLineItem table.
+-- Group by InvoiceId.
+-- You'll need an expression for the line item total: Price * Quantity.
+-- Aggregate per group using SUM().
+-- 1000 rows
+SELECT InvoiceID, SUM(Price*Quantity) Total
+FROM  personaltrainer.invoicelineitem
+GROUP BY InvoiceID;
+--------------------
+
+-- Calculate a total per invoice using only the InvoiceLineItem table.
+-- (See above.)
+-- Only include totals greater than $500.00.
+-- Order from lowest total to highest.
+-- 234 rows
+SELECT InvoiceID, SUM(Price*Quantity) Total
+FROM  personaltrainer.invoicelineitem
+GROUP BY InvoiceID
+HAVING SUM(Price*Quantity)>500
+ORDER BY SUM(Price*Quantity);
+--------------------
+
+-- Calculate the average line item total
+-- grouped by InvoiceLineItem.Description.
+-- 3 rows
+SELECT Description, AVG(Price*Quantity) Average
+FROM  personaltrainer.invoicelineitem
+GROUP BY Description;
+--------------------
+
+-- Select ClientId, FirstName, and LastName from Client
+-- for clients who have *paid* over $1000 total.
+-- Paid is Invoice.InvoiceStatus = 2.
+-- Order by LastName, then FirstName.
+-- 146 rows
+SELECT cl.ClientId, cl.FirstName, cl.LastName
+FROM personaltrainer.client cl LEFT JOIN personaltrainer.invoice inv
+ON cl.ClientId = inv.ClientId LEFT JOIN personaltrainer.invoicelineitem inl
+ON inv.InvoiceId=inl.InvoiceId
+WHERE inv.InvoiceStatus = 2
+GROUP BY cl.ClientId
+HAVING SUM(inl.Price*inl.Quantity) > 1000
+ORDER BY cl.LastName, cl.FirstName;
+--------------------
+
+-- Count exercises by category.
+-- Group by ExerciseCategory.Name.
+-- Order by exercise count descending.
+-- 13 rows
+SELECT excat.Name ExerciseCategory, COUNT(ex.Name) 'Number of Excercises'
+FROM personaltrainer.exercise ex LEFT JOIN personaltrainer.exercisecategory excat
+ON ex.ExerciseCategoryId = excat.ExerciseCategoryId
+GROUP BY excat.Name
+ORDER BY COUNT(ex.Name) DESC;
+
+--------------------
+
+-- Select Exercise.Name along with the minimum, maximum,
+-- and average ExerciseInstance.Sets.
+-- Order by Exercise.Name.
+-- 64 rows
+SELECT ex.Name Exercise, MIN(exin.Sets) MinimumSets, MAX(exin.Sets) MaximumSets, AVG(exin.Sets) AverageSets
+FROM personaltrainer.exercise ex LEFT JOIN personaltrainer.exerciseinstance exin
+ON ex.ExerciseId = exin.ExerciseId
+GROUP BY ex.Name;
+--------------------
+
+-- Find the minimum and maximum Client.BirthDate
+-- per Workout.
+-- 26 rows
+-- Sample: 
+-- WorkoutName, EarliestBirthDate, LatestBirthDate
+-- '3, 2, 1... Yoga!', '1928-04-28', '1993-02-07'
+SELECT wo.Name WorkoutName , MIN(cl.BirthDate) EarliestBirthDate, MAX(cl.BirthDate) LatestBirthDate
+FROM personaltrainer.workout wo LEFT JOIN personaltrainer.clientworkout clwo
+ON wo.WorkoutId = clwo.WorkoutId LEFT JOIN personaltrainer.client cl
+ON clwo.ClientId = cl.ClientId
+GROUP BY wo.Name;
+--------------------
+
+-- Count client goals.
+-- Be careful not to exclude rows for clients without goals.
+-- 500 rows total
+-- 50 rows with no goals
+SELECT cl.FirstName, cl.LastName, COUNT(clgo.GoalId)
+FROM personaltrainer.client cl LEFT JOIN personaltrainer.clientgoal clgo
+ON cl.ClientId = clgo.ClientId 
+GROUP BY cl.ClientId;
+--------------------
+
+-- Select Exercise.Name, Unit.Name, 
+-- and minimum and maximum ExerciseInstanceUnitValue.Value
+-- for all exercises with a configured ExerciseInstanceUnitValue.
+-- Order by Exercise.Name, then Unit.Name.
+-- 82 rows
+SELECT ex.Name Exercise, un.Name Unit, MIN(exinunva.Value) MinimumValue, MAX(exinunva.Value) MaximumValue
+FROM personaltrainer.exercise ex LEFT JOIN personaltrainer.exerciseinstance exin
+ON ex.ExerciseId = exin.ExerciseId LEFT JOIN personaltrainer.ExerciseInstanceUnitValue exinunva
+ON exin.ExerciseInstanceId = exinunva.ExerciseInstanceId LEFT JOIN personaltrainer.unit un
+ON exinunva.UnitId = un.UnitId
+GROUP BY ex.Name, un.Name
+ORDER BY ex.Name, un.Name;
+--------------------
+
+-- Modify the query above to include ExerciseCategory.Name.
+-- Order by ExerciseCategory.Name, then Exercise.Name, then Unit.Name.
+-- 82 rows
+SELECT excat.Name, ex.Name Exercise, un.Name Unit, MIN(exinunva.Value) MinimumValue, MAX(exinunva.Value) MaximumValue
+FROM personaltrainer.exercise ex LEFT JOIN personaltrainer.exerciseinstance exin
+ON ex.ExerciseId = exin.ExerciseId LEFT JOIN personaltrainer.ExerciseInstanceUnitValue exinunva
+ON exin.ExerciseInstanceId = exinunva.ExerciseInstanceId LEFT JOIN personaltrainer.unit un
+ON exinunva.UnitId = un.UnitId LEFT JOIN personaltrainer.exercisecategory excat
+ON ex.ExerciseCategoryId = excat.ExerciseCategoryId
+GROUP BY ex.Name, un.Name
+ORDER BY excat.Name, ex.Name, un.Name;
+--------------------
+
+-- Select the minimum and maximum age in years for
+-- each Level.
+-- To calculate age in years, use the MySQL function DATEDIFF.
+-- 4 rows
+SELECT le.Name, MIN(DATEDIFF(CURDATE(), cl.BirthDate)/365) Youngest, MAX(DATEDIFF(CURDATE(), cl.BirthDate)/365) Eldest
+FROM personaltrainer.level le INNER JOIN personaltrainer.workout wo
+ON le.LevelId = wo.LevelId INNER JOIN personaltrainer.clientworkout clwo
+ON wo.WorkoutId = clwo.WorkoutId INNER JOIN personaltrainer.client cl
+ON clwo.ClientId = cl.ClientId
+GROUP BY le.Name;
+--------------------
+
+-- Stretch Goal!
+-- Count logins by email extension (.com, .net, .org, etc...).
+-- Research SQL functions to isolate a very specific part of a string value.
+-- 27 rows (27 unique email extensions)
+SELECT SUBSTRING_INDEX(EmailAddress, '.', -1) EmailExtension, COUNT(EmailAddress) 'Number of logins'
+FROM personaltrainer.login
+GROUP BY SUBSTRING_INDEX(EmailAddress, '.', -1);
+--------------------
+
+-- Stretch Goal!
+-- Match client goals to workout goals.
+-- Select Client FirstName and LastName and Workout.Name for
+-- all workouts that match at least 2 of a client's goals.
+-- Order by the client's last name, then first name.
+-- 139 rows
+SELECT cl.FirstName, cl.LastName, wo.Name WorkoutName
+FROM personaltrainer.client cl INNER JOIN personaltrainer.clientgoal clgo
+ON cl.ClientId = clgo.ClientId INNER JOIN personaltrainer.workoutgoal wogo
+ON clgo.GoalId = wogo.GoalId INNER JOIN personaltrainer.workout wo
+ON wogo.WorkoutId = wo.WorkoutId
+GROUP BY  wo.Name, cl.FirstName, cl.LastName
+HAVING COUNT(clgo.ClientID) > 1
+ORDER BY cl.LastName, cl.FirstName;
+
+
