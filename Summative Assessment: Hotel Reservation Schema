@@ -83,7 +83,7 @@ set sql_safe_updates = 1;
 
 -- Part 4
 use HotelReservation;
--- Write a query that returns a list of reservations that end in July 2023, 
+-- 1. Write a query that returns a list of reservations that end in July 2023, 
 -- including the name of the guest, the room number(s), and the reservation dates
 SELECT g.FirstName, g.LastName, re.Room, re.StartDate, re.EndDate
 FROM Reservations re INNER JOIN Guests g
@@ -92,7 +92,7 @@ WHERE re.EndDate LIKE '2023-07%';
 /* Aurore Lipton	206	2023-07-01	2023-07-05
 Duane Cullison	203	2023-07-25	2023-07-30 */
 
--- Write a query that returns a list of all reservations for rooms with a jacuzzi, 
+-- 2. Write a query that returns a list of all reservations for rooms with a jacuzzi, 
 -- displaying the guest's name, the room number, and the dates of the reservation
 SELECT g.FirstName, g.LastName, re.Room, re.StartDate, re.EndDate
 FROM Reservations re INNER JOIN Guests g
@@ -104,7 +104,7 @@ Karie Yang	203	2023-09-13	2023-09-15
 Duane Cullison	203	2023-07-25	2023-07-30
 Bettyann Seery	203	2023-02-05	2023-02-10 */
 
--- Write a query that returns all the rooms reserved for a specific guest, including the guest's name, the room(s) reserved, 
+-- 3. Write a query that returns all the rooms reserved for a specific guest, including the guest's name, the room(s) reserved, 
 -- the starting date of the reservation, and how many people were included in the reservation. 
 -- (Choose a guest's name from the existing data.)
 SELECT g.FirstName, g.LastName, re.Room, re.StartDate, re.EndDate, re.Adults+re.Children 'Number of People'
@@ -115,7 +115,7 @@ WHERE g.FirstName='Karie' AND g.LastName = 'Yang';
 /* Karie Yang	201	2023-03-06	2023-03-07	4
 Karie Yang	203	2023-09-13	2023-09-15	4 */
 
--- Write a query that returns a list of rooms, reservation ID, and per-room cost for each reservation. 
+-- 4. Write a query that returns a list of rooms, reservation ID, and per-room cost for each reservation. 
 -- The results should include all rooms, whether or not there is a reservation associated with the room.
 SELECT ro.Room, re.ReservationId, re.TotalRoomCost
 FROM Room ro LEFT OUTER JOIN Reservations re
@@ -133,13 +133,13 @@ ON ro.Room = re.Room;
 208
 */
 
--- Write a query that returns all the rooms accommodating at least three guests and that are reserved on any date in April 2023.
+-- 5. Write a query that returns all the rooms accommodating at least three guests and that are reserved on any date in April 2023.
 SELECT DISTINCT Room
 FROM Reservations
 WHERE Adults+Children>=3 AND (StartDate LIKE '2023-04%' OR EndDate LIKE '2023-04%');
 -- 202
 
--- Write a query that returns a list of all guest names and the number of reservations per guest, 
+-- 6. Write a query that returns a list of all guest names and the number of reservations per guest, 
 -- sorted starting with the guest with the most reservations and then by the guest's last name
 SELECT g.FirstName, g.LastName,  COUNT(re.ReservationId) 'Number of Reservations'
 FROM Guests g LEFT OUTER JOIN Reservations re
@@ -154,7 +154,7 @@ Bettyann	Seery	1
 Mack	Simmer	1
 Karly	Wong	0 */
 
--- Write a query that displays the name, address, and phone number of a guest based on their phone number. 
+-- 7. Write a query that displays the name, address, and phone number of a guest based on their phone number. 
 -- (Choose a phone number from the existing data.)
 SELECT FirstName, LastName, Address, Phone
 FROM Guests
