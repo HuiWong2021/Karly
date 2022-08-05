@@ -1,0 +1,163 @@
+-- Part 2
+drop database if exists HotelReservation;
+create database HotelReservation;
+use HotelReservation;
+
+create table Room(
+Room int primary key,
+Type varchar(15) not null,
+Amenities varchar(50) not null,
+ADAAccessible bool not null default 0,
+StandardOccupancy int,
+MaximumOccupancy int,
+BasePrice decimal(20,2),
+ExtraPerson int
+);
+
+create table Guests(
+GuestId int primary key auto_increment,
+FirstName varchar(25) not null,
+LastName varchar(25) not null,
+Address varchar(50) not null,
+City varchar(20) not null,
+State char(2) not null,
+Zip char(5) not null,
+Phone varchar(25) not null
+);
+
+create table Reservations(
+ReservationId int primary key auto_increment,
+Room int not null,
+GuestId int not null,
+Adults int not null,
+Children int not null,
+StartDate date not null,
+EndDate date not null,
+TotalRoomCost decimal(20,2),
+foreign key fk_Reservations_Room (Room) references Room(Room),
+foreign key fk_Reservations_GuestId (GuestId) references Guests(GuestId)
+);
+
+-- Part 3
+use HotelReservation;
+
+insert into Room values
+(201, 'Double', 'Microwave, Jacuzzi', 0, 2, 4, 199.99, 10),
+(202, 'Double', 'Refrigerator', 1, 2, 4, 174.99, 10),
+(203, 'Double', 'Microwave, Jacuzzi', 0, 2, 4, 199.99, 10),
+(204, 'Double', 'Refrigerator', 1, 2, 4, 174.99, 10),
+(205, 'Single', 'Microwave, Refrigerator, Jacuzzi', 0, 2, 2, 174.99, null),
+(206, 'Single', 'Microwave, Refrigerator', 1, 2, 2, 149.99, null),
+(207, 'Single', 'Microwave, Refrigerator, Jacuzzi', 0, 2, 2, 174.99, null),
+(208, 'Single', 'Microwave, Refrigerator', 1, 2, 2, 149.99, null);
+
+
+insert into Guests (FirstName, LastName, Address, City, State, Zip, phone) values
+('Karly', 'Wong', '386 Queen Street', 'Drexel Hill', 'PA', '19026', '(868) 351-6860'),
+('Mack', 'Simmer', '379 Old Shore Street', 'Council Bluffs', 'IA', '51501', '(291) 553-0508'),
+('Bettyann', 'Seery', '750 Wintergreen Dr.', 'Wasilla', 'AK', '99654', '(478) 277-9632'),
+('Duane', 'Cullison', '9662 Foxrun Lane', 'Harlingen', 'TX', '78552', '(308) 494-0198'),
+('Karie', 'Yang', '9378 W. Augusta Avenue', 'West Deptford', 'NJ', '08096', '(214) 730-0298'),
+('Aurore', 'Lipton', '762 Wild Rose Street	', 'Saginaw', 'MI', '48601', '(377) 507-0974'),
+('Zachery', 'Luechtefeld', '7 Poplar Drive', 'Arvada', 'CO', '80003', '(814) 485-2615'),
+('Jeremiah', 'Pendergrass', '70 Oakwood Street', 'Zion', 'IL', '60099', '(279) 491-0960'),
+('Walter', 'Holaway', '7556 Arrowhead Street', 'Cumberland', 'RI', '02864', '(446) 396-6785');
+
+
+insert into Reservations (Room, GuestId, Adults, Children, StartDate, EndDate, TotalRoomCost) values
+(203, 3, 2, 1, '2023-02-05', '2023-02-10', 999.95),
+(201, 5, 2, 2, '2023-03-06', '2023-03-07', 199.99),
+(202, 7, 2, 2, '2023-04-28', '2023-04-30', 349.98),
+(203, 5, 2, 2, '2023-09-13', '2023-09-15', 399.98),
+(206, 2, 2, 1, '2023-02-05', '2023-02-10', 999.95),
+(205, 8, 1, 0, '2023-02-08', '2023-02-10', 349.98),
+(206, 6, 1, 0, '2023-07-01', '2023-07-05', 999.95),
+(203, 4, 1, 0, '2023-07-25', '2023-07-30', 999.95);
+
+set sql_safe_updates = 0;
+delete from Reservations
+where GuestId=8;
+delete from Guests
+where FirstName='Jeremiah' AND LastName='Pendergrass';
+set sql_safe_updates = 1;
+
+-- Part 4
+use HotelReservation;
+-- Write a query that returns a list of reservations that end in July 2023, 
+-- including the name of the guest, the room number(s), and the reservation dates
+SELECT g.FirstName, g.LastName, re.Room, re.StartDate, re.EndDate
+FROM Reservations re INNER JOIN Guests g
+ON re.GuestId=g.GuestId
+WHERE re.EndDate LIKE '2023-07%';
+/* Aurore Lipton	206	2023-07-01	2023-07-05
+Duane Cullison	203	2023-07-25	2023-07-30 */
+
+-- Write a query that returns a list of all reservations for rooms with a jacuzzi, 
+-- displaying the guest's name, the room number, and the dates of the reservation
+SELECT g.FirstName, g.LastName, re.Room, re.StartDate, re.EndDate
+FROM Reservations re INNER JOIN Guests g
+ON re.GuestId=g.GuestId INNER JOIN Room ro
+ON re.Room=ro.Room
+WHERE ro.Amenities LIKE '%Jacuzzi%';
+/* Karie Yang	201	2023-03-06	2023-03-07
+Karie Yang	203	2023-09-13	2023-09-15
+Duane Cullison	203	2023-07-25	2023-07-30
+Bettyann Seery	203	2023-02-05	2023-02-10 */
+
+-- Write a query that returns all the rooms reserved for a specific guest, including the guest's name, the room(s) reserved, 
+-- the starting date of the reservation, and how many people were included in the reservation. 
+-- (Choose a guest's name from the existing data.)
+SELECT g.FirstName, g.LastName, re.Room, re.StartDate, re.EndDate, re.Adults+re.Children 'Number of People'
+FROM Reservations re INNER JOIN Guests g
+ON re.GuestId=g.GuestId INNER JOIN Room ro
+ON re.Room=ro.Room
+WHERE g.FirstName='Karie' AND g.LastName = 'Yang';
+/* Karie Yang	201	2023-03-06	2023-03-07	4
+Karie Yang	203	2023-09-13	2023-09-15	4 */
+
+-- Write a query that returns a list of rooms, reservation ID, and per-room cost for each reservation. 
+-- The results should include all rooms, whether or not there is a reservation associated with the room.
+SELECT ro.Room, re.ReservationId, re.TotalRoomCost
+FROM Room ro LEFT OUTER JOIN Reservations re
+ON ro.Room = re.Room;
+/*201	2	199.99
+202	3	349.98
+203	1	999.95
+203	4	399.98
+203	7	999.95
+204		
+205		
+206	5	999.95
+206	6	999.95
+207		
+208
+*/
+
+-- Write a query that returns all the rooms accommodating at least three guests and that are reserved on any date in April 2023.
+SELECT DISTINCT Room
+FROM Reservations
+WHERE Adults+Children>=3 AND (StartDate LIKE '2023-04%' OR EndDate LIKE '2023-04%');
+-- 202
+
+-- Write a query that returns a list of all guest names and the number of reservations per guest, 
+-- sorted starting with the guest with the most reservations and then by the guest's last name
+SELECT g.FirstName, g.LastName,  COUNT(re.ReservationId) 'Number of Reservations'
+FROM Guests g LEFT OUTER JOIN Reservations re
+ON g.GuestId=re.GuestId
+GROUP BY re.GuestId
+ORDER BY COUNT(re.ReservationId) DESC, g.LastName ASC;
+/*Karie	Yang	2
+Duane	Cullison	1
+Aurore	Lipton	1
+Zachery	Luechtefeld	1
+Bettyann	Seery	1
+Mack	Simmer	1
+Karly	Wong	0 */
+
+-- Write a query that displays the name, address, and phone number of a guest based on their phone number. 
+-- (Choose a phone number from the existing data.)
+SELECT FirstName, LastName, Address, Phone
+FROM Guests
+WHERE Phone='(868) 351-6860'; 
+/*Karly	Wong	386 Queen Street	(868) 351-6860*/
+
