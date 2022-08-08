@@ -22,7 +22,222 @@ second = minute * 60
 
 print(f"{num_of_days} day(s) have {hour} hours, {minute} minutes, and {second} seconds.")
 
-4.
+----------------
+
+4. fix error(s) from below:
+# display the text in quotation marks to an output block
+Print("Python is fun!")
+should be: print("Python is fun!")
+
+
+# Display the text in quotation marks to an output block 
+# without moving any of the existing acode to a different line
+print("Python is fun!") print("Python is also easy.")
+should be:
+print("Python is fun!", end="") 
+print("Python is also easy.")
+
+# Display the text in quotation marks to an output block 
+# without moving any of the existing code to a different line
+print 
+("Python is fun!")
+should be: print("Python is fun!", end="")
+
+# Change each variable name to an appropriate name for Python. 
+# Do not use the same variable name more than one time.
+1-name = "Rebecca" # first name
+&_name = "Roberts" # last name
+
+should be: 
+first_name = "Rebecca" # first name
+last_name = "Roberts" # last name
+ 
+# After changing the variable names, update the code below 
+# to print out each name.
+print(1-name)
+print(&_name)
+
+should be: 
+print(first_name)
+print(last_name)
+
+5. Starting with the code blocks provided below, add to the code as needed to follow the instructions in the comments. 
+You may add necessary code, but you should not delete any of the existing code. 
+Run each block to make sure it works as expected before going to the next block.
+
+# Add a new line of code that displays the text in quotation marks 
+# to an output block without repeating the text in quotation marks.
+output = "I love Python!"
+add: print(output)
+ 
+# your code below this line
+# Display only the text Python is fun! to an output block 
+# without deleting any of the existing code
+print("Python is fun!")
+#print("Python is also easy!")
+added "#" in front of print("Python is also easy!")
+
+6. Create a script that prompts the user for the name of the state where they were born and the name of the state where they live now. 
+Save each value in its own variable and display the input values to the user.
+born_state=input("Enter the state where you were born: ")
+live_state=input("Enter the state where you live now: ")
+print(f"You were born in {born_state} and you live in {live_state} now.")
+
+--------------------
+7. Write a script that meets the following requirements:
+Add your name and the current date in comments at the top of the script.
+Prompt the user to enter their first name, their last name, their phone number, and the year they were born. Save each of these values to a different variable.
+Display the values they entered.
+Test your script to make sure it works as expected.
+#Karly 08/08/2022
+first_name=input("Enter your first name: ")
+last_name=input("Enter your last name: ")
+phone_number=input("Enter your phone number: ")
+year_born=input("Enter the year you were born: ")
+print("first name:", first_name)
+print("last name:", last_name)
+print("phone number:", phone_number)
+print("year of birth:", year_born)
+
+-------------------
+8. Create a computer program that performs the following steps:
+Prompt the user for an integer and store the value in a variable.
+Display the data type of the variable that holds the entered data.
+Convert the value to an integer type and store the converted value in a new variable.
+Display the value and type of the new variable in a single sentence. (For example, "The value is 8 with type integer.")
+Run the program and enter a float value at the prompt. What is its value in the last step?
+Refactor the program, using a float instead of an integer. What happens if you enter an integer rather than a float at the prompt?
+
+integer_inp=input("Enter an integer: ")
+print(type(integer))
+integer=int(integer_inp)
+type_int=type(integer)
+print(f"the value is {integer} with type: {type_int}.")
+
+9. Update the code below so that the result is equal to 576. Do not change any of the existing values or operators or the order in which they appear.
+# do not change the order in which the numbers and operators appear in the next line
+result = 5 + 3 ** 2 * 9 
+print(result) # the output should be 576
+
+updated:
+result = (5 + 3) ** 2 * 9 
+print(result) # the output should be 576
+
+10. Create a computer program that prompts the user for a float number and returns the integer portion of the floating number.
+float_num = input("Enter a float number: ")
+try:
+  float_num=float(float_num)
+  converted_int = int(float_num)
+  print(converted_int)
+except:
+  print("Please enter a decimal number.")
+  
+11. Write a computer program that calculates and displays the current value of a deposit for a given initial deposit, interest rate, how many times interest is calculated per year, and the number of years since the initial deposit.
+The program should prompt the user for each of the values and use the following formula to calculate the current value of the deposit:
+V = P(1 + r/n)^nt
+where
+V -- value
+P -- initial deposit
+r -- interest rate as a fraction (eg 0.05)
+n -- the number of times per year interest is calculated
+t -- the number of years since the initial deposit
+The program should display each of the values entered to the user in a meaningful way (so that the user can easily see what each value represents), along with the results of the calculation.
+
+p=input("Enter your initial deposit: ")
+r=input("Enter the interest rate as a fraction (eg 0.05): ")
+n=input("Enter the number of times per year interest is calculated: ")
+t=input("Enter the number of years since the initial deposit: ")
+try:
+  p=int(p)
+  r=float(r)
+  n=int(n)
+  t=int(t)
+  v=p*(1+r/n)**(n*t)
+  print("initial deposit:",p)
+  print("interest rate:",r)
+  print("number of times per year interest is calculated:",n)
+  print("number of years since the initial deposit:",t)
+  print("current value of your deposit:",v)
+except:
+  print("Please enter numerical values only!")
+  
+  
+12. Write a computer program that prompts the user for a principal amount, the rate of interest, 
+and the number of days for a loan and then calculates and returns the simple interest for the life of the loan. 
+Use the formula: interest = principal * rate * days / 365
+p=input("Enter the principal amount: ")
+r=input("Enter the interest rate as a fraction (eg 0.05): ")
+n=input("Enter the number of days for the loan: ")
+try:
+  p=int(p)
+  r=float(r)
+  n=int(n)
+  interest=p*r*n/365
+  print("simple interest for the life of the loan:",interest)
+except:
+  print("Please enter numerical values only!")
+
+
+13. Create a computer program that displays three statements that evaluate to True and three statements that evaluate to False.
+Example:
+a = 0
+b = 1 
+Output: a < b = True
+
+a=0
+b=1
+if a<b:
+  print("a<b = True")
+else:
+  print("a<b = False")
+if a>b:
+  print("a>b = True")
+else:
+  print("a>b = False")
+if a==b:
+  print("a=b = True")
+else:
+  print("a=b = False")
+try:
+  a=int(a)
+  b=int(b)
+  print("a and b are both strings = False")
+  if a+b>=10:
+    print("a+b<10 = False")
+  else:
+    print("a+b<10 = True")
+  if a+b<=10:
+    print("a+b>10 = False")
+  else:
+    print("a+b>10 = True")
+except:
+  print("a and b are both integers = True")
+
+14. Create a computer program that prompts the user for a number and calculates the following:
+the boolean of the number entered
+the binary equivalent of the number entered
+the square root of the number entered
+
+The program should display the following to the user:
+The number the user entered, in a phrase like, "You selected value."
+The boolean of the number, in a phrase like, "The boolean of your number is value."
+The binary equivalent of the number, in a phrase like, "The binary equivalent of your number is value"
+The square root of the number, in a phrase like, "The square root of your number is value," with the value rounded to three decimal places.
+
+
+
+
+
+15. 
+
+16. 
+
+17. 
+
+18. 
+
+
+
 
 
 
