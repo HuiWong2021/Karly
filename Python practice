@@ -2,3 +2,6 @@ st1= "Hello"
 st2= "World"
 
 print(f"{st1} {st2}")
+
+
+2. user_input = input("Enter a number over 100")
