@@ -7,9 +7,12 @@ print(f"{st1} {st2}")
 2.
 user_input1 = int(input("Enter a number over 100: "))
 user_input2 = int(input("Enter a number under 10: "))
-output= user_input1//user_input2
 
-print(f"{user_input2} goes into {user_input1} {output} times." )
+if user_input1>100 and user_input2<10:
+  output= user_input1//user_input2
+  print(f"{user_input2} goes into {user_input1} {output} times." )
+else:
+  print("first input must be larger than 100 and second input must be smaller than 10.")
 
 3.
 num_of_days = int(input("How many days? "))
